@@ -1,0 +1,25 @@
+import pandas as pd
+import numpy as np
+from sklearn.ensemble import RandomForestRegressor
+
+# Load the dataset
+df = pd.read_csv('Python_dataset.csv')
+
+# Split the data into features (X) and target (y)
+X = df.drop('estimate', axis=1)
+y = df['estimate']
+
+# Train a random forest model
+rf = RandomForestRegressor(random_state=42)
+rf.fit(X, y)
+
+# Get feature importances
+importances = rf.feature_importances_
+
+# Sort feature importances in descending order
+indices = np.argsort(importances)[::-1]
+
+# Print the feature rankings
+print("Feature ranking:")
+for f in range(X.shape[1]):
+    print(f"{f+1}. {X.columns[indices[f]]} ({importances[indices[f]]})")
