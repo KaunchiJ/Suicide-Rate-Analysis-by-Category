@@ -3,7 +3,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.model_selection import train_test_split
 
 # Load the dataset
-df = pd.read_csv('https://tinyurl.com/bdccs4zm')
+df = pd.read_csv('Python_dataset.csv')
 
 # Define features and target variable
 features = ['Sex', 'Race', 'Hispanic Origin', 'Age Group']
