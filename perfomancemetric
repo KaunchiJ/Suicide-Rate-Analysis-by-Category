@@ -5,7 +5,7 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 
 # Load the dataset
-df = pd.read_csv('https://tinyurl.com/bdccs4zm')
+df = pd.read_csv('Python_dataset.csv')
 
 # Split the data into features (X) and target (y)
 X = df.drop('estimate', axis=1)
