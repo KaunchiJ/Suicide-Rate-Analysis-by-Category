@@ -8,8 +8,8 @@ from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_sc
 df = pd.read_csv('https://tinyurl.com/bdccs4zm')
 
 # Split the data into features (X) and target (y)
-X = df.drop('suicides_per_100k_pop', axis=1)
-y = df['suicides_per_100k_pop']
+X = df.drop('estimate', axis=1)
+y = df['estimate']
 
 # Split the data into training and testing sets
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
