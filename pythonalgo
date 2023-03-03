@@ -7,7 +7,7 @@ df = pd.read_csv('https://tinyurl.com/bdccs4zm')
 
 # Define features and target variable
 features = ['Sex', 'Race', 'Hispanic Origin', 'Age Group']
-target = 'Suicide Rate'
+target = 'estimate'
 
 # Convert categorical features into numerical values
 df[features] = df[features].astype('category')
