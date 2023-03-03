@@ -9,17 +9,17 @@ Sub FindMaxSuicideRateGroup()
     
     ' Set variables
     Set ws = ActiveSheet ' or specify a specific sheet using Worksheets("SheetName")
-    lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row ' assuming data starts in column A
-    sexCol = 1 ' assuming "sex" is in column A
-    raceCol = 2 ' assuming "race" is in column B
-    hispanicCol = 3 ' assuming "hispanic_origin" is in column C
-    ageCol = 4 ' assuming "age" is in column D
-    suicidesCol = 5 ' assuming "suicides" is in column E
-    popCol = 6 ' assuming "population" is in column F
-    rateCol = 7 ' assuming the new column for suicide rates is in column G
+    lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row 
+    sexCol = 1 
+    raceCol = 2 
+    hispanicCol = 3 
+    ageCol = 4 
+    suicidesCol = 5 
+    popCol = 6
+    rateCol = 7 
     
     ' Calculate suicide rates for each row
-    ws.Cells(1, rateCol).Value = "suicide_rate" ' add header for new column
+    ws.Cells(1, rateCol).Value = "estimate" ' add header for new column
     For i = 2 To lastRow
         ws.Cells(i, rateCol).Value = ws.Cells(i, suicidesCol).Value / ws.Cells(i, popCol).Value * 100000
     Next i
