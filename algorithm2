@@ -1,0 +1,44 @@
+Sub FindMaxSuicideRateGroup()
+
+    ' Declare variables
+    Dim ws As Worksheet
+    Dim lastRow As Long
+    Dim sexCol As Long, raceCol As Long, hispanicCol As Long, ageCol As Long, suicidesCol As Long, popCol As Long, rateCol As Long
+    Dim sex As String, race As String, hispanic As String, age As String
+    Dim maxRate As Double, currRate As Double
+    
+    ' Set variables
+    Set ws = ActiveSheet ' or specify a specific sheet using Worksheets("SheetName")
+    lastRow = ws.Cells(ws.Rows.Count, 1).End(xlUp).Row ' assuming data starts in column A
+    sexCol = 1 ' assuming "sex" is in column A
+    raceCol = 2 ' assuming "race" is in column B
+    hispanicCol = 3 ' assuming "hispanic_origin" is in column C
+    ageCol = 4 ' assuming "age" is in column D
+    suicidesCol = 5 ' assuming "suicides" is in column E
+    popCol = 6 ' assuming "population" is in column F
+    rateCol = 7 ' assuming the new column for suicide rates is in column G
+    
+    ' Calculate suicide rates for each row
+    ws.Cells(1, rateCol).Value = "suicide_rate" ' add header for new column
+    For i = 2 To lastRow
+        ws.Cells(i, rateCol).Value = ws.Cells(i, suicidesCol).Value / ws.Cells(i, popCol).Value * 100000
+    Next i
+    
+    ' Find the group with the highest suicide rate
+    maxRate = 0
+    For i = 2 To lastRow
+        sex = ws.Cells(i, sexCol).Value
+        race = ws.Cells(i, raceCol).Value
+        hispanic = ws.Cells(i, hispanicCol).Value
+        age = ws.Cells(i, ageCol).Value
+        currRate = ws.Cells(i, rateCol).Value
+        If currRate > maxRate Then
+            maxRate = currRate
+            maxGroup = sex & ", " & race & ", " & hispanic & ", " & age
+        End If
+    Next i
+    
+    ' Output the group with the highest suicide rate
+    MsgBox "The group with the highest suicide rate is: " & maxGroup & " (" & Format(maxRate, "0.00") & " per 100,000)"
+    
+End Sub
